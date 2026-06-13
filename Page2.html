@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- スマホ対応（レスポンシブデザイン）に必須 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>おすすめご飯屋さん</title>
+
+    <!-- Tailwind CSSをCDNから読み込む -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<!--
+bg-gray-50      : 背景色を薄いグレー（カスタマイズ可能）
+text-gray-950   : 文字色を濃いグレー（カスタマイズ可能）
+min-h-screen    : 画面の高さ以上にする
+flex flex-col   : 縦方向のFlexboxレイアウト
+-->
+
+<body class="bg-red-50 text-orange-0 min-h-screen flex flex-col">
+
+    <!-- ==========================
+       ヘッダー
+       bg-indigo-600 bgは背景色でindigoは紺色系で600は濃さ（カスタマイズ可能）
+       ========================== -->
+    <header class="bg-orange-800 text-white shadow-md">
+
+        <!--
+    max-w-6xl : 最大横幅
+    mx-auto   : 中央配置（マージンの左右をautoに設定）
+    px-4      : 左右余白（xは横　つまり左右　右だけはr,左だけはl）
+    py-4      : 上下余白（yは縦　つまり上下　上だけはt,下だけはb）
+    flex      : h1（通常はブロック要素）とspan（通常はインライン要素）を2つ横並びにする
+    justify-between : 左右に配置（泣き別れ配置になるので、学籍番号が常に右端に表示されるのはflexとjustify-betweenによる）
+    items-center    : 縦方向中央揃え
+    -->
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+
+            <!-- サイトタイトル 
+      text-xl       : 文字サイズを大きくする
+      font-bold     : 太字にする
+      tracking-wider : 文字間を広げる 
+      -->
+            <h1 class="text-xl font-bold tracking-wider">
+                favorite restraunt
+            </h1>
+
+            <!-- 学籍番号表示
+       text-sm    : 文字サイズを小さくする
+    　　bg-indigo-700 : 背景色をさらに濃い紺色に
+       px-3 py-1 : 左右に3、上下に1の余白
+        rounded-full : 角を完全に丸くする（カスタマイズ可能）
+      -->
+            <span class="text-sm bg-yellow-700 px-3 py-1 rounded-full">
+                学籍番号: t424051
+            </span>
+        </div>
+    </header>
+
+    <!-- ==========================
+       メインコンテンツ
+       ========================== -->
+    <main class="max-w-6xl w-full mx-auto px-4 py-6 flex-grow">
+
+        <!-- パンくずリスト -->
+        <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+
+            <!--
+      inline-flex : 横並び
+      space-x-2   : 要素間の余白
+      -->
+            <ol class="list-none p-0 inline-flex space-x-2">
+
+                <li class="flex items-center">
+                    <a href="index.html" class="hover:text-indigo-600 transition-colors">
+                        ホーム
+                    </a>
+                    <span class="mx-2 text-gray-400">/</span>
+                </li>
+
+                <li class="flex items-center">
+                    <a href="#" class="hover:text-indigo-600 transition-colors">
+                        ご飯屋さん(t424051)
+                    </a>
+                    <!-- <span class="mx-2 text-gray-400">/</span> -->
+                </li>
+
+                <!-- <li class="text-gray-800 font-medium" aria-current="page">
+                    私の推し紹介
+                </li> -->
+
+            </ol>
+        </nav>
+
+        <!--
+    grid         : Gridレイアウト
+    grid-cols-1  : 通常は1列
+    md:grid-cols-3 : 768px以上で3列
+    gap-6        : 要素間の余白
+    -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- ==========================
+           カード1
+           ========================== -->
+            <a href="https://byo.co.jp/obon-de-gohan/" target="_blank"
+                class="block bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+
+                <!--
+        w-full      : 横幅100%
+        h-48        : 高さ固定
+        object-cover : 画像を切り抜いて枠いっぱいに表示
+        -->
+                <img class="w-full h-48 object-cover" src="https://byo.co.jp/Portals/0/10obondegohan/sliderimg_2504_1.jpg" alt="本の画像">
+
+                <div class="p-5">
+
+                    <!-- カテゴリラベル -->
+                    <span class="inline-block bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-1 rounded mb-2">
+                        和食
+                    </span>
+
+                    <!--
+          line-clamp-1
+          → 1行で省略(...)
+          -->
+                    <h3 class="font-bold text-lg mb-2 line-clamp-1">
+                        おぼんdeごはん
+                    </h3>
+
+                    <!--
+          line-clamp-2
+          → 2行まで表示
+          -->
+                    <p class="text-gray-600 text-sm line-clamp-2">
+                        ご飯とお味噌汁がおかわり無料の人気店
+                    </p>
+
+                </div>
+            </a>
+
+            <!-- ==========================
+           カード2
+           ========================== -->
+            <a href="https://www.hama-sushi.co.jp/" target="_blank"
+                class="block bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+
+                <img class="w-full h-48 object-cover" src="https://asset.watch.impress.co.jp/img/ipw/docs/1330/321/hama_01_s.jpg"
+                    alt="動画の画像">
+
+                <div class="p-5">
+
+                    <span class="inline-block bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded mb-2">
+                        お寿司
+                    </span>
+
+                    <h3 class="font-bold text-lg mb-2 line-clamp-1">
+                        はま寿司
+                    </h3>
+
+                    <p class="text-gray-600 text-sm line-clamp-2">
+                        チェーン店ですがネタも新鮮でサイドメニューが豊富
+                    </p>
+
+                </div>
+            </a>
+
+            <!-- ==========================
+           カード3
+           ========================== -->
+            <a href="https://www.bikkuri-donkey.com/" target="_blank"
+                class="block bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+
+                <img class="w-full h-48 object-cover" src="https://www.bikkuri-donkey.com/control-panel/uploads/2022/03/1_RegularBurgDish.webp" alt="ツールの画像">
+
+                <div class="p-5">
+
+                    <span class="inline-block bg-pink-900 text-red-200 text-xs font-semibold px-2 py-1 rounded mb-2">
+                        ハンバーグ
+                    </span>
+
+                    <h3 class="font-bold text-lg mb-2 line-clamp-1">
+                        びっくりドンキー
+                    </h3>
+
+                    <p class="text-gray-600 text-sm line-clamp-2">
+                        ワンプレートのハンバーグ屋さんでサイドメニューのブロッコリーの箱舟がおすすめ
+                    </p>
+
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+    <!-- ==========================
+       フッター
+       ========================== -->
+    <footer class="bg-gray-500 text-gray-100 text-sm py-4 border-t border-gray-700">
+
+        <div class="max-w-6xl mx-auto px-4 text-center">
+
+            <p>
+                &copy; 2026 おすすめご飯.
+                All制作物の著作権は各自に帰属します。
+            </p>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>
+

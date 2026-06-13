@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Scale | 仕事率</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-rates">
+  <main class="rate-stage">
+    <header class="simple-top">
+      <a class="back-link" href="home.html" aria-label="戻る">‹</a>
+      <h1 id="rateGroupName">グループ名</h1>
+      <a class="outline-button" href="edit.html">
+        <span>編集</span>
+      </a>
+    </header>
+
+    <section class="rate-summary" aria-label="仕事率の説明">
+      <div>
+        <span>仕事率</span>
+        <strong>全体の仕事量に対する担当割合</strong>
+      </div>
+      <div class="total-chip">
+        <span>合計</span>
+        <strong id="totalWorkHours">0h</strong>
+      </div>
+    </section>
+
+    <section class="workload-layout" aria-label="メンバー別仕事率">
+      <div id="rateList" class="rate-list" aria-label="メンバー別仕事率の一覧"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

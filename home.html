@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Scale | グループ作成</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-home">
+  <main class="home-stage">
+    <section class="logo-area" aria-label="Task Scale">
+      <div class="scale-logo" aria-hidden="true">
+        <div class="scale-beam"></div>
+        <div class="scale-post"></div>
+        <div class="scale-base"></div>
+        <div class="scale-pan left"></div>
+        <div class="scale-pan right"></div>
+        <strong>TASK SCALE</strong>
+      </div>
+      <div id="homeGroupCards" class="home-group-cards" aria-label="作成したグループ"></div>
+    </section>
+
+    <button id="openCreatePanel" class="round-add home-plus" type="button" aria-label="グループ作成を開く">+</button>
+
+    <aside id="createPanel" class="create-panel" aria-label="グループ作成" aria-hidden="true">
+      <div class="phone-card">
+        <div class="phone-title">
+          <h1>グループ名</h1>
+          <a href="main.html">作成</a>
+        </div>
+        <input id="panelGroupName" class="soft-input" type="text" placeholder="name...">
+
+        <h2>メンバー</h2>
+        <div id="homeMemberList" class="home-member-list"></div>
+
+        <button id="addMemberLine" class="tiny-link" type="button">追加</button>
+
+        <form id="homeMemberForm" class="add-person-row">
+          <span class="avatar small" aria-hidden="true"></span>
+          <input id="newMemberName" class="soft-input" type="text" placeholder="name..." required>
+        </form>
+      </div>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
