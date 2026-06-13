@@ -155,7 +155,7 @@ function renderRates() {
         </div>
       </article>
     `;
-  }).join("") : `<p class="empty-note">メンバーを追加すると仕事率が表示されます。</p>`;
+  }).join("") : `<p class="empty-note">メンバーを追加すると仕事率が表示されます!</p>`;
 }
 
 function renderEdit() {
