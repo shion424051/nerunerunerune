@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Task Scale | 仕事率</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="main.css">
 </head>
 <body class="page-rates">
   <main class="rate-stage">
@@ -15,6 +15,11 @@
         <span>編集</span>
       </a>
     </header>
+    
+<header style="display: flex; justify-content: space-between; align-items: center;">
+  <h1 id="rateGroupName">グループ名</h1>
+  <button id="btnDeleteGroup" style="background: #e74c3c; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">グループ削除</button>
+</header>
 
     <section class="rate-summary" aria-label="仕事率の説明">
       <div>
@@ -32,6 +37,6 @@
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
