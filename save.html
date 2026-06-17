@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スライドショーの例</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <!-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
+</head>
+
+<body class="pb-16">
+    <header>
+        <div class="max-w-4xl mx-auto px-4 pt-6 pb-2">
+            <h1 class="text-3xl font-bold text-gray-800">
+                ○○グループ
+            </h1>
+            <p class="text-sm text-gray-500 mt-1">○○グループへようこそ</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            <nav class="bg-gray-200 p-2 text-sm border-b border-gray-300">
+    HOME</nav>
+        </div>
+    </header>
+
+    <main class="mt-6">
+
+        <div class="max-w-4xl mx-auto p-4 bg-gray-100">
+            <div 
+                 class="relative bg-zinc-800 text-white h-64 flex items-center justify-between px-4 my-2 overflow-hidden rounded-xl shadow">
+                
+                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800&auto=format&fit=crop" 
+                     class="absolute inset-0 w-full h-full object-cover opacity-100">
+                
+                <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=800&auto=format&fit=crop" 
+                     x-show="current === 1" 
+                     x-transition.opacity.duration.750ms
+                     class="absolute inset-0 w-full h-full object-cover opacity-100">
+                
+                <img src="https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=800&auto=format&fit=crop" 
+                     x-show="current === 2" 
+                     x-transition.opacity.duration.750ms
+                     class="absolute inset-0 w-full h-full object-cover opacity-100">
+
+            </div>
+            <!-- <div class="relative bg-zinc-800 text-white h-64 flex items-center justify-between px-4 my-2">
+                <span>&lt;</span>
+                <div class="text-center">メイン画像のスライドショー（猫）</div>
+                <span>&gt;</span>
+            </div> -->
+
+            <section class="bg-gray-200 p-4 min-h-[80px]">
+    グループの紹介
+</section>
+
+
+            <h2 class="bg-gray-300 p-2 text-md mt-4">
+    メンバー
+</h2>
+
+
+            <div class="flex flex-col md:flex-row gap-4 p-4 bg-gray-200">
+                <div class="flex-1 bg-white border border-gray-400 rounded-2xl h-32 flex items-center justify-center">
+                    作品1
+                </div>
+                <div class="flex-1 bg-white border border-gray-400 rounded-2xl h-32 flex items-center justify-center">
+                    作品2
+                </div>
+                <div class="flex-1 bg-white border border-gray-400 rounded-2xl h-32 flex items-center justify-center">
+                    作品3
+                </div>
+            </div>
+
+        </div>
+    </main>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-gray-50 border-x border-b border-gray-200 rounded-b-xl">
+<div class="w-full bg-white border border-gray-200 hover:border-gray-400 rounded-2xl p-6 h-36 flex items-center justify-center font-medium shadow-sm transition-all hover:shadow">
+     メンバ1
+     </div>
+
+    <footer class="fixed bottom-0 left-0 w-full bg-zinc-700 text-white p-3 text-center z-50">
+        &copy; 2026 ○○グループ. All rights reserved.
+    </footer class="bg-zinc-700">
+
+</body>
+
+</html>
