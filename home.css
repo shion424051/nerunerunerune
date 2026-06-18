@@ -44,28 +44,6 @@ input {
   outline: 0;
 }
 
-.home-stage {
-  display: grid;
-  grid-template-columns: 1fr;
-  min-height: 100vh;
-  padding: clamp(18px, 3vw, 40px);
-  position: relative;
-}
-
-.logo-area {
-  display: grid;
-  gap: 28px;
-  grid-template-rows: 1fr auto;
-  place-items: center;
-  min-height: calc(100vh - 80px);
-}
-
-.scale-logo {
-  height: min(30vw, 270px);
-  min-height: 220px;
-  position: relative;
-  width: min(42vw, 520px);
-}
 
 .home-group-cards {
   display: grid;
@@ -109,17 +87,7 @@ input {
   margin-top: 4px;
 }
 
-.scale-logo strong {
-  color: var(--ink-dark);
-  font-size: clamp(2.6rem, 5.2vw, 5rem);
-  left: 50%;
-  line-height: 1;
-  position: absolute;
-  text-align: center;
-  top: 44%;
-  transform: translate(-50%, -50%);
-  white-space: nowrap;
-}
+
 
 .scale-beam,
 .scale-post,
@@ -364,14 +332,7 @@ input {
 }
 
 @media (max-width: 1000px) {
-  .home-stage {
-    grid-template-columns: 1fr;
-  }
-
-  .logo-area {
-    min-height: auto;
-  }
-
+  
   .create-panel {
     justify-items: stretch;
   }
@@ -382,9 +343,7 @@ input {
 }
 
 @media (max-width: 620px) {
-  .home-stage {
-    padding: 18px;
-  }
+  
 
   .phone-card {
     border-width: 7px;
