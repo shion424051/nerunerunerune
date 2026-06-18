@@ -1,0 +1,480 @@
+project
+
+main.html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Scale | 仕事率</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body class="page-rates">
+  <main class="rate-stage">
+    <header class="simple-top">
+      <a class="back-link" href="home.html" aria-label="戻る">‹</a>
+      <h1 id="rateGroupName">グループ名</h1>
+      <a class="outline-button" href="edit.html">
+        <span>編集</span>
+      </a>
+    </header>
+    
+<header style="display: flex; justify-content: space-between; align-items: center;">
+  <h1 id="rateGroupName">グループ名</h1>
+  <button id="btnDeleteGroup" style="background: #e74c3c; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">グループ削除</button>
+</header>
+
+    <section class="rate-summary" aria-label="仕事率の説明">
+      <div>
+        <span>仕事率</span>
+        <strong>全体の仕事量に対する担当割合</strong>
+      </div>
+      <div class="total-chip">
+        <span>合計</span>
+        <strong id="totalWorkHours">0h</strong>
+      </div>
+    </section>
+
+    <section class="workload-layout" aria-label="メンバー別仕事率">
+      <div id="rateList" class="rate-list" aria-label="メンバー別仕事率の一覧"></div>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>
+main.css
+:root {
+  --ink: #667387;
+  --ink-dark: #536276;
+  --paper: #ffffff;
+  --pink: #dccbd1;
+  --line: #6d788b;
+  --member-1: #f4a5a1;
+  --member-2: #86b6d8;
+  --member-3: #d7b56d;
+  --member-4: #91c7a8;
+  --member-5: #b9a1d8;
+  --member-6: #e39abf;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Yu Gothic UI", "Hiragino Maru Gothic ProN", "Segoe UI", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.empty-note {
+  align-self: center;
+  color: #9d94a4;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.rate-stage {
+  min-height: 100vh;
+  padding: clamp(18px, 3vw, 38px);
+}
+
+.simple-top {
+  align-items: start;
+  display: grid;
+  grid-template-columns: 74px 1fr auto;
+  gap: 24px;
+  margin-bottom: 42px;
+}
+
+.back-link {
+  color: var(--pink);
+  font-size: clamp(3.8rem, 6vw, 5.8rem);
+  line-height: 0.75;
+}
+
+.simple-top h1 {
+  font-size: clamp(2.5rem, 4.6vw, 4.8rem);
+  line-height: 1;
+  margin: 0;
+}
+
+.outline-button {
+  border: 4px solid var(--line);
+  border-radius: 6px;
+  display: grid;
+  font-size: clamp(1.6rem, 3vw, 3.2rem);
+  justify-items: center;
+  line-height: 0.95;
+  min-width: 280px;
+  padding: 12px 22px 10px;
+  text-align: center;
+}
+
+.rate-summary {
+  align-items: center;
+  background: linear-gradient(135deg, rgba(234, 223, 226, 0.78), rgba(243, 240, 234, 0.82));
+  border: 2px solid rgba(109, 120, 139, 0.22);
+  border-radius: 18px;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding: 16px;
+}
+
+.rate-summary > div:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.rate-summary > div:first-child span {
+  color: var(--ink-dark);
+  font-size: 1.6rem;
+}
+
+.rate-summary > div:first-child strong {
+  color: #9d94a4;
+  font-size: 0.98rem;
+  margin: 0;
+}
+
+.total-chip {
+  background: white;
+  border: 2px solid rgba(109, 120, 139, 0.22);
+  border-radius: 12px;
+  min-height: 46px;
+  padding: 8px 18px;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.total-chip span {
+  color: #9d94a4;
+}
+
+.total-chip strong {
+  color: var(--ink-dark);
+  font-size: 1.55rem;
+}
+
+.workload-layout {
+  display: grid;
+}
+
+.rate-list {
+  display: grid;
+  gap: 18px;
+}
+
+.rate-card {
+  align-items: center;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(243, 240, 234, 0.72));
+  border: 2px solid rgba(109, 120, 139, 0.16);
+  border-left: 12px solid var(--member-color);
+  border-radius: 18px;
+  box-shadow: 0 16px 36px rgba(83, 98, 118, 0.08);
+  display: grid;
+  grid-template-columns: minmax(180px, 0.85fr) minmax(180px, 1fr) 130px;
+  gap: clamp(16px, 2.6vw, 34px);
+  padding: 18px;
+}
+
+.rate-person {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+}
+
+.rate-name-line {
+  display: grid;
+  gap: 4px;
+}
+
+.rate-name-line strong {
+  color: var(--ink-dark);
+  font-size: clamp(1.25rem, 2vw, 2rem);
+}
+
+.rate-name-line span {
+  color: #9d94a4;
+  font-size: 0.95rem;
+}
+
+.rate-meter {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  height: 26px;
+  overflow: hidden;
+}
+
+.rate-meter-fill {
+  background: var(--member-color);
+  border-radius: 999px;
+  height: 100%;
+  min-width: 10px;
+}
+
+.rate-percent {
+  display: grid;
+  justify-items: end;
+}
+
+.rate-percent span {
+  color: #9d94a4;
+  font-size: 0.92rem;
+}
+
+.rate-percent strong {
+  color: #9d94a4;
+  font-size: clamp(1.9rem, 3.2vw, 3.2rem);
+  line-height: 1;
+}
+
+.avatar {
+  background: var(--pink);
+  border-radius: 999px;
+  display: block;
+  flex: 0 0 auto;
+  height: 68px;
+  overflow: hidden;
+  position: relative;
+  width: 68px;
+}
+
+.avatar::before {
+  background: white;
+  border-radius: 48% 48% 46% 46%;
+  content: "";
+  height: 30px;
+  left: 22px;
+  position: absolute;
+  top: 20px;
+  width: 25px;
+}
+
+.avatar::after {
+  background: white;
+  border-radius: 50% 50% 12% 12%;
+  bottom: -5px;
+  content: "";
+  height: 34px;
+  left: 16px;
+  position: absolute;
+  width: 36px;
+}
+
+.avatar.large {
+  height: 96px;
+  width: 96px;
+}
+
+.avatar.large::before {
+  height: 42px;
+  left: 31px;
+  top: 22px;
+  width: 35px;
+}
+
+.avatar.large::after {
+  height: 48px;
+  left: 22px;
+  width: 52px;
+}
+
+@media (max-width: 1000px) {
+  .simple-top {
+    grid-template-columns: 1fr;
+  }
+
+  .outline-button {
+    min-width: 0;
+  }
+
+  .rate-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .rate-percent {
+    justify-items: start;
+  }
+}
+
+@media (max-width: 620px) {
+  .rate-stage {
+    padding: 18px;
+  }
+
+  .simple-top {
+    margin-bottom: 34px;
+  }
+
+  .rate-summary {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .avatar.large {
+    height: 86px;
+    width: 86px;
+  }
+
+  .rate-percent {
+    font-size: 2.4rem;
+    justify-items: start;
+  }
+}
+main.js
+const defaultState = {
+  groupName: "グループ名",
+  members: [],
+  tasks: []
+};
+
+const storageKey = "task-scale-rough-v2";
+const memberColors = ["#f4a5a1", "#86b6d8", "#d7b56d", "#91c7a8", "#b9a1d8", "#e39abf", "#93b7ad", "#c8a2a8"];
+let state = loadState();
+
+function clone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+// localStorageからデータを読み込む
+function loadState() {
+  const saved = localStorage.getItem(storageKey);
+  if (!saved) return clone(defaultState);
+
+  try {
+    const parsed = JSON.parse(saved);
+    return {
+      groupName: parsed.groupName || defaultState.groupName,
+      members: Array.isArray(parsed.members) ? parsed.members : clone(defaultState.members),
+      tasks: Array.isArray(parsed.tasks) ? parsed.tasks : clone(defaultState.tasks)
+    };
+  } catch {
+    return clone(defaultState);
+  }
+}
+
+// localStorageにデータを保存する
+function saveState() {
+  localStorage.setItem(storageKey, JSON.stringify(state));
+}
+
+// メンバーごとのタスクを抽出
+function memberTasks(memberId) {
+  return state.tasks.filter((task) => task.ownerId === memberId);
+}
+
+// メンバーごとの合計時間を計算
+function memberHours(memberId) {
+  return memberTasks(memberId).reduce((sum, task) => sum + Number(task.hours || 0), 0);
+}
+
+// 全体の合計時間を計算
+function totalHours() {
+  return state.tasks.reduce((sum, task) => sum + Number(task.hours || 0), 0);
+}
+
+// メンバーごとの仕事率（%）を計算
+function memberPercent(memberId) {
+  const total = totalHours();
+  if (!total) return Math.round(100 / Math.max(state.members.length, 1));
+  return Math.round((memberHours(memberId) / total) * 100);
+}
+
+// ==========================================
+// 【追加機能】メンバーの削除（紐づくタスクも一括削除）
+// ==========================================
+function deleteMember(memberId) {
+  const member = state.members.find(m => m.id === memberId);
+  if (!member) return;
+
+  if (confirm(`「${member.name}」と、このメンバーに紐づくすべてのタスクを削除しますか？`)) {
+    // メンバーを一覧から除外
+    state.members = state.members.filter((m) => m.id !== memberId);
+    // 紐づいていたタスクも一緒に削除して計算の崩れを防ぐ
+    state.tasks = state.tasks.filter((t) => t.ownerId !== memberId);
+    
+    saveState();
+    renderRates(); // 画面を再描画
+  }
+}
+
+// ==========================================
+// 【追加機能】グループの削除（全データ初期化）
+// ==========================================
+function deleteGroup() {
+  if (confirm("本当にグループを削除し、すべてのデータを初期化しますか？\nこの操作は取り消せません。")) {
+    state = clone(defaultState);
+    saveState();
+    renderRates(); // 画面を再描画
+  }
+}
+
+// main.html（仕事率画面）の描画処理
+function renderRates() {
+  const title = document.querySelector("#rateGroupName");
+  const rateList = document.querySelector("#rateList");
+  const totalWorkHours = document.querySelector("#totalWorkHours");
+  
+  if (!title || !rateList || !totalWorkHours) return;
+
+  title.textContent = state.groupName;
+  
+  const total = totalHours();
+  totalWorkHours.textContent = `${total}h`;
+
+  rateList.innerHTML = state.members.length ? state.members.map((member, index) => {
+    const percent = memberPercent(member.id);
+    const hours = memberHours(member.id);
+    const color = memberColors[index % memberColors.length];
+    return `
+      <article class="rate-card" style="--member-color:${color}; position: relative;">
+        <button class="delete-member-btn" data-delete-member="${member.id}" aria-label="${member.name}を削除" style="position: absolute; top: 12px; right: 12px; background: none; border: none; color: #b3b3b3; cursor: pointer; font-size: 18px; padding: 0; line-height: 1;">×</button>
+        
+        <div class="rate-person">
+          <span class="avatar large" aria-hidden="true"></span>
+          <div class="rate-name-line">
+            <strong>${member.name}</strong>
+            <span>${hours}h</span>
+          </div>
+        </div>
+        <div class="rate-meter">
+          <div class="rate-meter-fill" style="width:${Math.max(4, percent)}%"></div>
+        </div>
+        <div class="rate-percent">
+          <span>仕事率</span>
+          <strong>${percent}%</strong>
+        </div>
+      </article>
+    `;
+  }).join("") : `<p class="empty-note">メンバーを追加すると仕事率が表示されます!</p>`;
+
+  // ★動的に作成されたメンバー削除ボタンにクリックイベントをバインド
+  document.querySelectorAll("[data-delete-member]").forEach((button) => {
+    button.onclick = () => deleteMember(button.dataset.deleteMember);
+  });
+}
+
+// 静的な要素（最初からHTMLにあるグループ削除ボタンなど）のイベントバインド
+function bindEvents() {
+  document.querySelector("#btnDeleteGroup")?.addEventListener("click", deleteGroup);
+}
+
+// ページ読み込み時に初期実行
+bindEvents();
+renderRates();
