@@ -44,6 +44,13 @@ input {
   outline: 0;
 }
 
+.home-stage {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  padding: clamp(18px, 3vw, 40px);
+  position: relative;
+}
 
 .home-group-cards {
   display: grid;
@@ -87,77 +94,6 @@ input {
   margin-top: 4px;
 }
 
-
-
-.scale-beam,
-.scale-post,
-.scale-base,
-.scale-pan {
-  background: var(--ink);
-  position: absolute;
-}
-
-.scale-beam {
-  border-radius: 36px 36px 10px 10px;
-  height: 30px;
-  left: 24%;
-  top: 25%;
-  transform: rotate(1deg);
-  width: 52%;
-}
-
-.scale-post {
-  border-radius: 18px;
-  height: 190px;
-  left: calc(50% - 12px);
-  top: 25%;
-  width: 24px;
-}
-
-.scale-base {
-  border-radius: 12px;
-  bottom: 18px;
-  height: 24px;
-  left: 42%;
-  width: 16%;
-}
-
-.scale-pan {
-  border-radius: 0 0 90px 90px;
-  height: 48px;
-  top: 70%;
-  width: 108px;
-}
-
-.scale-pan.left {
-  left: 23%;
-}
-
-.scale-pan.right {
-  right: 23%;
-}
-
-.scale-pan::before {
-  background: var(--ink);
-  content: "";
-  height: 78px;
-  left: 14px;
-  position: absolute;
-  top: -72px;
-  transform: skewX(-28deg);
-  width: 30px;
-}
-
-.scale-pan::after {
-  background: var(--ink);
-  content: "";
-  height: 78px;
-  position: absolute;
-  right: 14px;
-  top: -72px;
-  transform: skewX(28deg);
-  width: 30px;
-}
 
 .create-panel {
   align-items: start;
@@ -241,7 +177,7 @@ input {
   margin: 16px 0 28px;
 }
 
-.home-member-list {
+.member-list {
   display: grid;
   gap: 14px;
   margin-top: 16px;
@@ -321,7 +257,7 @@ input {
   text-decoration: underline;
 }
 
-.add-person-row {
+.add-person{
   align-items: center;
   bottom: 20px;
   display: flex;
@@ -331,8 +267,9 @@ input {
   right: 20px;
 }
 
+/* スマホ対応のための挙動の調整 */
 @media (max-width: 1000px) {
-  
+
   .create-panel {
     justify-items: stretch;
   }
