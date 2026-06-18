@@ -14,15 +14,13 @@ main.html
     <header class="simple-top">
       <a class="back-link" href="home.html" aria-label="戻る">‹</a>
       <h1 id="rateGroupName">グループ名</h1>
-      <a class="outline-button" href="edit.html">
-        <span>編集</span>
-      </a>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <a class="outline-button" href="edit.html">
+          <span>編集</span>
+        </a>
+        <button id="btnDeleteGroup" style="background:#e74c3c; color:#fff; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-size:1rem;">グループ削除</button>
+      </div>
     </header>
-    
-<header style="display: flex; justify-content: space-between; align-items: center;">
-  <h1 id="rateGroupName">グループ名</h1>
-  <button id="btnDeleteGroup" style="background: #e74c3c; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">グループ削除</button>
-</header>
 
     <section class="rate-summary" aria-label="仕事率の説明">
       <div>
@@ -43,6 +41,7 @@ main.html
   <script src="main.js"></script>
 </body>
 </html>
+
 main.css
 :root {
   --ink: #667387;
