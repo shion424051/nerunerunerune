@@ -68,7 +68,7 @@ function renderHome() {
   if (groupCards) {
     const hasGroup = state.groupName !== "グループ名" || state.members.length > 0 || state.tasks.length > 0;
     groupCards.innerHTML = hasGroup ? `
-      <a class="group-card" href="main.html">
+      <a class="group-card" href="../page2/main.html">
         <span class="group-card-dot" aria-hidden="true"></span>
         <span>
           <strong>${state.groupName}</strong>
